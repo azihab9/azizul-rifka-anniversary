@@ -1192,6 +1192,12 @@ function createMemoryGame() {
 
   board.innerHTML = "";
   result.style.display = "none";
+  // RESET ROMANTIC MESSAGE
+const oldMessage = document.getElementById("memory-love-message");
+
+if (oldMessage) {
+  oldMessage.remove();
+}
 
   memoryMoves = 0;
   memoryPairs = 0;
