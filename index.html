@@ -771,6 +771,26 @@ function makeLoveExplosion(element) {
     document.body.appendChild(heart);
     setTimeout(() => heart.remove(), 1800);
   }
+  function showRandomLoveNote() {
+  const messages = [
+    "You are my favorite part of every day. ♡",
+    "If I could choose again, I would still choose you.",
+    "My home is wherever you are. 💗",
+    "Every little moment with you means everything.",
+    "You make my ordinary days magical.",
+    "I still get butterflies because of you. 🦋",
+    "No matter how many days pass, I will keep choosing you.",
+    "You are my sweetest unexpected blessing.",
+    "One lifetime with you will never be enough.",
+    "I love you, more than yesterday and less than tomorrow. ♡"
+  ];
+
+  const note = document.getElementById("randomLoveNote");
+  if (!note) return;
+
+  const randomIndex = Math.floor(Math.random() * messages.length);
+  note.textContent = messages[randomIndex];
+}
 }
 </script>
 </body>
