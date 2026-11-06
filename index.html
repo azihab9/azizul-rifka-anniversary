@@ -132,6 +132,14 @@ nav a{display:none}
 *,*::before,*::after{scroll-behavior:auto!important;animation:none!important;transition:none!important}
 .reveal{opacity:1;transform:none}
 }
+  /* REAL PHOTO STYLE */
+.polaroid-photo{
+  width:100%;
+  aspect-ratio:4/5;
+  object-fit:cover;
+  display:block;
+  border-radius:3px;
+}
 </style>
 </head>
 <body>
@@ -228,41 +236,42 @@ nav a{display:none}
 </div>
 </section>
 <!-- OUR PHOTO GALLERY -->
+<!-- OUR PHOTO GALLERY -->
 <section id="gallery" class="reveal">
   <div class="center">
     <div class="eyebrow">Captured little moments</div>
     <h2>Our Photo Gallery 📸</h2>
-    <p>Little memories, big feelings. Setiap foto punya ceritanya sendiri.</p>
+    <p>Little memories, big feelings. Every picture tells our story.</p>
   </div>
 
   <div class="gallery-grid">
     <div class="polaroid" style="--tilt:-2deg">
-      <div class="polaroid-art"><span>📷</span><small>Our first favorite memory</small></div>
+      <img class="polaroid-photo" src="assets/23.jpeg" alt="Azizul and Rifka">
       <p>That first little moment ♡</p>
     </div>
     <div class="polaroid" style="--tilt:2deg">
-      <div class="polaroid-art"><span>🌷</span><small>A day worth remembering</small></div>
+      <img class="polaroid-photo" src="assets/16.jpeg" alt="Our memory">
       <p>Just the two of us</p>
     </div>
     <div class="polaroid" style="--tilt:1deg">
-      <div class="polaroid-art"><span>☀️</span><small>Our happy little days</small></div>
+      <img class="polaroid-photo" src="assets/15.jpeg" alt="Our happy days">
       <p>Sunshine and smiles</p>
     </div>
     <div class="polaroid" style="--tilt:2deg">
-      <div class="polaroid-art"><span>🍰</span><small>Simple dates, sweet memories</small></div>
+      <img class="polaroid-photo" src="assets/13.jpeg" alt="Sweet memories">
       <p>Sweetest little date</p>
     </div>
     <div class="polaroid" style="--tilt:-2deg">
-      <div class="polaroid-art"><span>🎞️</span><small>One for the memory book</small></div>
+      <img class="polaroid-photo" src="assets/12.jpeg" alt="Our favorite memory">
       <p>Forever in my camera roll</p>
     </div>
     <div class="polaroid" style="--tilt:1deg">
-      <div class="polaroid-art"><span>💗</span><small>More memories to come</small></div>
+      <img class="polaroid-photo" src="assets/11.jpeg" alt="More memories">
       <p>To be continued...</p>
     </div>
   </div>
 
-  <p class="gallery-note">♡ Enam ruang kenangan kita — nanti bisa diganti dengan foto asli Azizul & Rifka.</p>
+  <p class="gallery-note">♡ Six little memories, one beautiful story.</p>
 </section>
 <!-- NEW: PICK A LITTLE HEART -->
 <section id="game" class="reveal">
