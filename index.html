@@ -858,6 +858,105 @@ observer.unobserve(entry.target);
 items.forEach(item=>observer.observe(item));
 }
 revealOnScroll();
+  // OUR LOVE QUIZ ENGINE
+const loveQuestions = [
+  {
+    question: "When did our story begin? ♡",
+    options: ["12 November 2023", "14 February 2023", "1 January 2024", "25 December 2023"],
+    answer: 0
+  },
+  {
+    question: "What makes our relationship special?",
+    options: ["Expensive gifts", "Choosing each other every day", "Perfect days only", "Never disagreeing"],
+    answer: 1
+  },
+  {
+    question: "Where is my favorite place?",
+    options: ["Paris", "The beach", "Wherever you are", "The mountains"],
+    answer: 2
+  },
+  {
+    question: "What do I want for our future?",
+    options: ["More adventures together", "More arguments", "Less memories", "More distance"],
+    answer: 0
+  },
+  {
+    question: "If I could choose again, what would I choose?",
+    options: ["A new story", "Someone else", "To be alone", "You, always you ♡"],
+    answer: 3
+  }
+];
+
+let currentQuestion = 0;
+let quizScore = 0;
+let quizAnswered = false;
+
+function showLoveQuestion() {
+  const q = loveQuestions[currentQuestion];
+
+  document.getElementById("quiz-progress").textContent =
+    `Question ${currentQuestion + 1} of ${loveQuestions.length}`;
+
+  document.getElementById("quiz-question").textContent = q.question;
+  document.getElementById("quiz-feedback").textContent = "";
+  document.getElementById("quiz-options").innerHTML = "";
+  document.getElementById("quiz-next").style.display = "none";
+
+  quizAnswered = false;
+
+  q.options.forEach((option, index) => {
+    const button = document.createElement("button");
+    button.className = "quiz-option";
+    button.textContent = option;
+
+    button.onclick = () => {
+      if (quizAnswered) return;
+      quizAnswered = true;
+
+      const buttons = document.querySelectorAll(".quiz-option");
+
+      buttons[q.answer].classList.add("correct");
+
+      if (index === q.answer) {
+        quizScore++;
+        document.getElementById("quiz-feedback").textContent =
+          "YAY! You know us so well! 💗";
+      } else {
+        button.classList.add("wrong");
+        document.getElementById("quiz-feedback").textContent =
+          "Oops! But you're still my favorite person. ♡";
+      }
+
+      document.getElementById("quiz-next").style.display = "inline-block";
+      document.getElementById("quiz-next").textContent =
+        currentQuestion === 4 ? "See My Result ♡" : "Next Question ♡";
+
+      buttons.forEach(b => b.disabled = true);
+    };
+
+    document.getElementById("quiz-options").appendChild(button);
+  });
+}
+
+document.getElementById("quiz-next").onclick = () => {
+  currentQuestion++;
+
+  if (currentQuestion < loveQuestions.length) {
+    showLoveQuestion();
+  } else {
+    document.getElementById("quiz-progress").style.display = "none";
+    document.getElementById("quiz-question").style.display = "none";
+    document.getElementById("quiz-options").style.display = "none";
+    document.getElementById("quiz-feedback").style.display = "none";
+    document.getElementById("quiz-next").style.display = "none";
+    document.getElementById("quiz-result").style.display = "block";
+
+    document.getElementById("quiz-score").textContent =
+      `Your score: ${quizScore} / 5 💗`;
+  }
+};
+
+showLoveQuestion();
 </script>
 <script>
 function makeLoveExplosion(element) {
