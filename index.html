@@ -1120,6 +1120,79 @@ nav a{display:none}
   font-size: 13px;
   font-weight: 700;
 }
+  
+/* Romantic Success Popup */
+.love-popup {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(65, 35, 50, 0.45);
+  backdrop-filter: blur(7px);
+}
+
+.love-popup.show {
+  display: flex;
+  animation: popupFade 0.35s ease;
+}
+
+.love-popup-card {
+  width: 100%;
+  max-width: 360px;
+  padding: 35px 25px;
+  border-radius: 28px;
+  background: linear-gradient(145deg, #fff0f5, #fffaf0);
+  text-align: center;
+  box-shadow: 0 20px 60px #5c294b40;
+  animation: popupBounce 0.5s ease;
+}
+
+.love-popup-icon {
+  font-size: 55px;
+  margin-bottom: 15px;
+  animation: popupHeart 1.2s infinite;
+}
+
+.love-popup-card h2 {
+  color: #c65d83;
+  font-size: 23px;
+  margin-bottom: 12px;
+}
+
+.love-popup-card p {
+  color: #87556b;
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.love-popup-card button {
+  margin-top: 20px;
+  padding: 13px 25px;
+  border: none;
+  border-radius: 30px;
+  background: #d87999;
+  color: white;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+@keyframes popupFade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes popupBounce {
+  from { transform: scale(0.75); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+@keyframes popupHeart {
+  50% { transform: scale(1.2) rotate(8deg); }
+}
+
 </style>
 </head>
 <body>
@@ -1942,8 +2015,12 @@ setInterval(createFloatingHeart, 1800);
   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
   
 <script>
-  function showLovePopup() {
-  alert("Pesan kamu sudah aku teruskan ya, Tuan Putri Cantik ♡ 💗");
+function showLovePopup() {
+  document.getElementById("love-popup").classList.add("show");
+}
+
+function closeLovePopup() {
+  document.getElementById("love-popup").classList.remove("show");
 }
 (function () {
   const form = document.getElementById("rifka-message-form");
@@ -1992,6 +2069,25 @@ setInterval(createFloatingHeart, 1800);
   });
 })();
 </script>
+
+<div class="love-popup" id="love-popup">
+  <div class="love-popup-card">
+    <div class="love-popup-icon">💌</div>
+
+    <h2>Pesan Terkirim!</h2>
+
+    <p>
+      Pesan kamu sudah aku teruskan ya,
+      <strong>Tuan Putri Cantik</strong> ♡
+    </p>
+
+    <div style="font-size: 25px;">🌷💕✨</div>
+
+    <button onclick="closeLovePopup()">
+      Yeay, makasih! ♡
+    </button>
+  </div>
+</div>
 
 </body>
 </html>
