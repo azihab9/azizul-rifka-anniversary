@@ -1473,6 +1473,36 @@ for (let i = 0; i < 35; i++) {
 document.getElementById("memory-restart").onclick = createMemoryGame;
 
 createMemoryGame();
+  // SAKURA FALLING EFFECT
+function createSakuraPetal() {
+  const gate = document.getElementById("gate");
+
+  if (!gate || gate.style.display === "none") return;
+
+  const petal = document.createElement("span");
+  const flowers = ["🌸", "🌷", "💮"];
+
+  petal.className = "sakura-petal";
+  petal.textContent =
+    flowers[Math.floor(Math.random() * flowers.length)];
+
+  petal.style.left = Math.random() * 100 + "%";
+  petal.style.fontSize = (12 + Math.random() * 13) + "px";
+  petal.style.animationDuration = (5 + Math.random() * 4) + "s";
+
+  gate.appendChild(petal);
+
+  setTimeout(() => petal.remove(), 9500);
+}
+
+// Start sakura while intro is visible
+for (let i = 0; i < 10; i++) {
+  setTimeout(createSakuraPetal, i * 500);
+}
+
+const sakuraInterval = setInterval(() => {
+  createSakuraPetal();
+}, 900);
 </script>
   
 <script>
