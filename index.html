@@ -140,6 +140,19 @@ nav a{display:none}
   display:block;
   border-radius:3px;
 }
+  /* PHOTO HOVER ANIMATION */
+.polaroid-photo{
+  transition:transform .4s ease,filter .4s ease;
+}
+
+.polaroid:hover .polaroid-photo{
+  transform:scale(1.04) rotate(1deg);
+  filter:brightness(1.05);
+}
+
+.polaroid{
+  overflow:hidden;
+}
 </style>
 </head>
 <body>
