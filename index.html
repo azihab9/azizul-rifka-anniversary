@@ -1036,7 +1036,106 @@ for (let i = 0; i < 45; i++) {
 };
 
 showLoveQuestion();
+  // OUR MEMORY GAME ENGINE
+const memoryPhotos = [
+  "assets/23.jpeg",
+  "assets/16.jpeg",
+  "assets/15.jpeg"
+];
+
+let memoryCards = [];
+let firstCard = null;
+let secondCard = null;
+let lockBoard = false;
+let memoryMoves = 0;
+let memoryPairs = 0;
+
+function createMemoryGame() {
+  const board = document.getElementById("memory-board");
+  const result = document.getElementById("memory-result");
+
+  memoryCards = [...memoryPhotos, ...memoryPhotos]
+    .map((photo, index) => ({
+      photo,
+      id: index
+    }))
+    .sort(() => Math.random() - 0.5);
+
+  board.innerHTML = "";
+  result.style.display = "none";
+
+  memoryMoves = 0;
+  memoryPairs = 0;
+  firstCard = null;
+  secondCard = null;
+  lockBoard = false;
+
+  document.getElementById("memory-moves").textContent = "0";
+  document.getElementById("memory-pairs").textContent = "0 / 3";
+
+  memoryCards.forEach((card) => {
+    const button = document.createElement("button");
+    button.className = "memory-tile";
+    button.innerHTML = `<span class="memory-cover">♡</span>
+      <img src="${card.photo}" alt="Our memory">`;
+
+    button.onclick = () => flipMemoryCard(button, card);
+    board.appendChild(button);
+  });
+}
+
+function flipMemoryCard(button, card) {
+  if (
+    lockBoard ||
+    button.classList.contains("flipped") ||
+    button.classList.contains("matched")
+  ) return;
+
+  button.classList.add("flipped");
+
+  if (!firstCard) {
+    firstCard = { button, card };
+    return;
+  }
+
+  secondCard = { button, card };
+  memoryMoves++;
+
+  document.getElementById("memory-moves").textContent = memoryMoves;
+
+  if (firstCard.card.photo === secondCard.card.photo) {
+    firstCard.button.classList.add("matched");
+    secondCard.button.classList.add("matched");
+
+    memoryPairs++;
+    document.getElementById("memory-pairs").textContent =
+      `${memoryPairs} / 3`;
+
+    firstCard = null;
+    secondCard = null;
+
+    if (memoryPairs === 3) {
+      document.getElementById("memory-result").style.display = "block";
+      makeLoveExplosion(document.getElementById("memory-result"));
+    }
+  } else {
+    lockBoard = true;
+
+    setTimeout(() => {
+      firstCard.button.classList.remove("flipped");
+      secondCard.button.classList.remove("flipped");
+      firstCard = null;
+      secondCard = null;
+      lockBoard = false;
+    }, 900);
+  }
+}
+
+document.getElementById("memory-restart").onclick = createMemoryGame;
+
+createMemoryGame();
 </script>
+  
 <script>
 function makeLoveExplosion(element) {
   const rect = element.getBoundingClientRect();
