@@ -1120,10 +1120,11 @@ nav a{display:none}
 
 <script>
 document.getElementById('enter').onclick=()=>{
-document.getElementById('gate').style.display='none';
-document.getElementById('site').style.display='block';
-window.scrollTo(0,0);
-revealOnScroll();
+  document.getElementById('gate').style.display='none';
+  document.getElementById('site').style.display='block';
+  document.getElementById('site').style.opacity='1';
+  window.scrollTo(0,0);
+  revealOnScroll();
 };
 
 document.getElementById('later').onclick=function(){
