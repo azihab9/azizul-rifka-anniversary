@@ -746,6 +746,71 @@ nav a{display:none}
     display: none;
   }
 }
+  /* MAGICAL ROMANTIC INTRO */
+#gate {
+  background:
+    radial-gradient(circle at 20% 20%, #ffd6e7 0%, transparent 35%),
+    radial-gradient(circle at 80% 80%, #f5c5df 0%, transparent 35%),
+    linear-gradient(135deg, #fff0f6, #fce4ec, #fff5f8);
+  overflow: hidden;
+}
+
+.gate-card {
+  position: relative;
+  background: rgba(255,255,255,0.72);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(255,255,255,0.9);
+  box-shadow:
+    0 20px 60px rgba(190,100,140,0.16),
+    0 0 35px rgba(255,180,210,0.25);
+  animation: gateEntrance 1.2s cubic-bezier(.2,.8,.2,1) both;
+}
+
+@keyframes gateEntrance {
+  from {
+    opacity: 0;
+    transform: translateY(35px) scale(.94);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.gate-card .sticker {
+  animation: stickerFloat 3s ease-in-out infinite;
+}
+
+@keyframes stickerFloat {
+  0%, 100% { transform: translateY(0) rotate(-5deg); }
+  50% { transform: translateY(-9px) rotate(5deg); }
+}
+
+.gate-card h1 {
+  animation: titleGlow 3s ease-in-out infinite;
+}
+
+@keyframes titleGlow {
+  0%, 100% {
+    text-shadow: 0 0 0 rgba(220,120,160,0);
+  }
+  50% {
+    text-shadow: 0 4px 20px rgba(220,120,160,0.3);
+  }
+}
+
+#enter {
+  animation: heartbeat 2s ease-in-out infinite;
+}
+
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  10% { transform: scale(1.04); }
+  20% { transform: scale(1); }
+  30% { transform: scale(1.04); }
+  40% { transform: scale(1); }
+}
 </style>
 </head>
 <body>
