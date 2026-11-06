@@ -593,7 +593,7 @@ nav a{display:none}
     <p>There's something I want you to read.</p>
   </div>
 
-<details class="secret-envelope" ontoggle="if(this.open){makeLoveExplosion(this);showRandomLoveNote();}">
+<details class="secret-envelope">
     <summary>Open your secret letter ♡</summary>
     <div class="secret-message">
       <h3>Dear Rifka,</h3>
@@ -800,6 +800,14 @@ function showRandomLoveNote() {
 
   note.textContent = messages[randomIndex];
 }
+    document.querySelectorAll(".secret-envelope").forEach((letter) => {
+  letter.addEventListener("toggle", function () {
+    if (this.open) {
+      makeLoveExplosion(this);
+      showRandomLoveNote();
+    }
+  });
+});
 </script>
 </script>
 </body>
