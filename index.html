@@ -883,13 +883,52 @@ nav a{display:none}
   transform: scale(1.05);
   pointer-events: none;
 }
-  #welcomeMessage {
+ #welcomeMessage {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   text-align: center;
-  padding: 28px 15px;
+  padding: 20px;
+  background: linear-gradient(135deg, #fff0f6, #fce4ec, #fff5f8);
   opacity: 0;
-  transform: translateY(20px);
-  transition: all 1.2s ease;
+  visibility: hidden;
+  transition: opacity 1s ease, visibility 1s ease;
   pointer-events: none;
+}
+
+#welcomeMessage.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+#welcomeMessage.hide {
+  opacity: 0;
+}
+
+#welcomeMessage span {
+  font-size: 48px;
+  animation: welcomeHeart 2s infinite;
+}
+
+#welcomeMessage p {
+  font-family: 'Playfair Display', serif;
+  font-size: 25px;
+  color: #bd668c;
+  margin: 12px 0;
+}
+
+#welcomeMessage small {
+  color: #a77b91;
+  letter-spacing: 1px;
+}
+
+@keyframes welcomeHeart {
+  50% { transform: scale(1.25); }
+}
 }
 
 #welcomeMessage.show {
@@ -1200,9 +1239,19 @@ setTimeout(() => {
   gate.style.display = 'none';
 }, 800);
   document.getElementById('site').style.display='block';
-  setTimeout(() => {
-  document.getElementById('welcomeMessage').classList.add('show');
+const welcome = document.getElementById('welcomeMessage');
+
+setTimeout(() => {
+  welcome.classList.add('show');
 }, 500);
+
+setTimeout(() => {
+  welcome.classList.add('hide');
+}, 3500);
+
+setTimeout(() => {
+  welcome.classList.remove('show', 'hide');
+}, 4600);
   document.getElementById('site').style.opacity='1';
   window.scrollTo(0,0);
   revealOnScroll();
