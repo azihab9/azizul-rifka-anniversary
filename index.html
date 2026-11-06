@@ -65,7 +65,58 @@ footer{text-align:center;padding:35px;color:#b28d9a;font-size:12px}
 /* NEW: scroll reveal */
 .reveal{opacity:0;transform:translateY(25px);transition:opacity .8s ease,transform .8s ease}
 .reveal.visible{opacity:1;transform:translateY(0)}
-
+/* OUR PHOTO GALLERY */
+.gallery-grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:22px;
+  align-items:start;
+}
+.polaroid{
+  background:white;
+  padding:12px 12px 18px;
+  border-radius:5px;
+  box-shadow:0 10px 28px #8e526118;
+  transform:rotate(var(--tilt));
+  transition:transform .3s,box-shadow .3s;
+}
+.polaroid:hover{
+  transform:translateY(-8px) rotate(0deg);
+  box-shadow:0 16px 32px #8e526125;
+}
+.polaroid:nth-child(even){margin-top:28px}
+.polaroid-art{
+  aspect-ratio:4/5;
+  border-radius:3px;
+  background:linear-gradient(145deg,#ffe0e8,#fff1dc);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  color:#b77d90;
+  padding:12px;
+}
+.polaroid-art span{font-size:38px;margin-bottom:12px}
+.polaroid-art small{font-size:11px;line-height:1.6}
+.polaroid p{
+  font-family:'Playfair Display',serif;
+  text-align:center;
+  margin:13px 0 0;
+  color:#9b687b;
+  font-size:16px;
+}
+.gallery-note{
+  font-size:12px;
+  text-align:center;
+  color:#b28d9a;
+  margin-top:22px;
+}
+@media(max-width:650px){
+  .gallery-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+  .polaroid{padding:8px 8px 13px}
+  .polaroid p{font-size:14px}
+}
 /* NEW: little heart game */
 .heart-game{background:linear-gradient(135deg,#fff0f3,#fff9f0);border:1px solid #f9dce4;border-radius:28px;padding:35px 20px;text-align:center}
 .heart-options{display:flex;justify-content:center;gap:18px;flex-wrap:wrap;margin:25px 0}
@@ -106,6 +157,7 @@ nav a{display:none}
 <a href="#time">Our Time</a>
 <a href="#story">Our Story</a>
 <a href="#letter">A Letter</a>
+  <a href="#gallery">Our Photos</a>
 <a href="#game">Surprise</a>
 </div>
 <button class="music" id="music">♫ Play our song</button>
@@ -175,7 +227,43 @@ nav a{display:none}
 <div class="signature">With all my love,<br>Azizul ♡</div>
 </div>
 </section>
+<!-- OUR PHOTO GALLERY -->
+<section id="gallery" class="reveal">
+  <div class="center">
+    <div class="eyebrow">Captured little moments</div>
+    <h2>Our Photo Gallery 📸</h2>
+    <p>Little memories, big feelings. Setiap foto punya ceritanya sendiri.</p>
+  </div>
 
+  <div class="gallery-grid">
+    <div class="polaroid" style="--tilt:-2deg">
+      <div class="polaroid-art"><span>📷</span><small>Our first favorite memory</small></div>
+      <p>That first little moment ♡</p>
+    </div>
+    <div class="polaroid" style="--tilt:2deg">
+      <div class="polaroid-art"><span>🌷</span><small>A day worth remembering</small></div>
+      <p>Just the two of us</p>
+    </div>
+    <div class="polaroid" style="--tilt:1deg">
+      <div class="polaroid-art"><span>☀️</span><small>Our happy little days</small></div>
+      <p>Sunshine and smiles</p>
+    </div>
+    <div class="polaroid" style="--tilt:2deg">
+      <div class="polaroid-art"><span>🍰</span><small>Simple dates, sweet memories</small></div>
+      <p>Sweetest little date</p>
+    </div>
+    <div class="polaroid" style="--tilt:-2deg">
+      <div class="polaroid-art"><span>🎞️</span><small>One for the memory book</small></div>
+      <p>Forever in my camera roll</p>
+    </div>
+    <div class="polaroid" style="--tilt:1deg">
+      <div class="polaroid-art"><span>💗</span><small>More memories to come</small></div>
+      <p>To be continued...</p>
+    </div>
+  </div>
+
+  <p class="gallery-note">♡ Enam ruang kenangan kita — nanti bisa diganti dengan foto asli Azizul & Rifka.</p>
+</section>
 <!-- NEW: PICK A LITTLE HEART -->
 <section id="game" class="reveal">
 <div class="center">
