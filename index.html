@@ -231,6 +231,26 @@ nav a{display:none}
   text-align:left;
   animation:letterOpen .6s ease;
 }
+  /* ROMANTIC LETTER REVEAL */
+.secret-message {
+  animation: letterAppear 1s ease both;
+  transform-origin: top center;
+}
+
+@keyframes letterAppear {
+  0% {
+    opacity: 0;
+    transform: translateY(35px) scale(.92);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.secret-envelope[open] .secret-message {
+  animation: letterAppear 1s ease both;
+}
 
 .secret-message h3{
   margin-top:0;
