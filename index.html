@@ -1138,6 +1138,7 @@ nav a{display:none}
 
 <script>
 document.getElementById('enter').onclick=()=>{
+  createGateBurst(document.getElementById('enter'));
   document.getElementById('gate').style.display='none';
   document.getElementById('site').style.display='block';
   document.getElementById('site').style.opacity='1';
@@ -1621,6 +1622,24 @@ for (let i = 0; i < 8; i++) {
 
 // Continue gently creating hearts
 setInterval(createFloatingHeart, 1800);
+  function createGateBurst(button) {
+  const rect = button.getBoundingClientRect();
+  const hearts = ["💗", "💖", "💕", "❤️", "🌸"];
+
+  for (let i = 0; i < 18; i++) {
+    const heart = document.createElement("span");
+    heart.className = "gate-burst-heart";
+    heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+
+    heart.style.left = rect.left + rect.width / 2 + "px";
+    heart.style.top = rect.top + rect.height / 2 + "px";
+    heart.style.setProperty("--move-x", (Math.random() * 300 - 150) + "px");
+    heart.style.setProperty("--move-y", (Math.random() * 300 - 150) + "px");
+
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 1400);
+  }
+}
 </script>
 </body>
 </html>
