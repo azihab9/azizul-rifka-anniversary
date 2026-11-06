@@ -7,7 +7,9 @@
 <title>The Little World of Azizul & Rifka ♡</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap');
+
 *{box-sizing:border-box}
+html{scroll-behavior:smooth}
 body{margin:0;background:#fffaf4;color:#573b48;font-family:'DM Sans',sans-serif}
 button{font:inherit;cursor:pointer}
 #gate{min-height:100vh;display:grid;place-items:center;padding:20px;background:linear-gradient(135deg,#ffe1e9,#fffaf4,#ffe9d9)}
@@ -16,13 +18,15 @@ button{font:inherit;cursor:pointer}
 h1,h2,h3{font-family:'Playfair Display',serif}
 .gate-card h1{font-size:43px;line-height:1.1}
 p{line-height:1.8;color:#987c88}
-.btn{border:0;border-radius:30px;padding:14px 23px;background:#c94f70;color:white;font-weight:bold}
+.btn{border:0;border-radius:30px;padding:14px 23px;background:#c94f70;color:white;font-weight:bold;transition:.25s}
+.btn:hover{transform:translateY(-3px);box-shadow:0 8px 20px #c94f7040}
 .soft{background:#ffe3ea;color:#c94f70}
 .gate-actions,.choices{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
 #site{display:none}
-nav{position:sticky;top:0;background:#fffaf4ee;padding:15px 5%;display:flex;justify-content:space-between;align-items:center;z-index:5}
+nav{position:sticky;top:0;background:#fffaf4ee;padding:15px 5%;display:flex;justify-content:space-between;align-items:center;z-index:5;backdrop-filter:blur(12px)}
 .brand{font:bold 23px 'Playfair Display';color:#c94f70}
 nav a{margin:0 10px;color:#987c88;text-decoration:none;font-size:13px}
+nav a:hover{color:#c94f70}
 .music{border:1px solid #f1cbd5;border-radius:30px;padding:9px 13px;background:white;color:#c94f70}
 section{max-width:950px;margin:auto;padding:75px 22px}
 .hero{text-align:center;padding-top:90px}
@@ -54,10 +58,29 @@ section{max-width:950px;margin:auto;padding:75px 22px}
 .final h2{font-size:clamp(30px,6vw,43px)}
 #response{font-weight:bold;color:#c94f70;margin-top:20px}
 footer{text-align:center;padding:35px;color:#b28d9a;font-size:12px}
-#confetti{position:fixed;inset:0;pointer-events:none;overflow:hidden}
+#confetti{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:10}
 .heart{position:absolute;top:-30px;animation:fall 3s linear forwards;font-size:23px}
 @keyframes fall{to{transform:translateY(110vh) rotate(360deg);opacity:0}}
-@media(max-width:600px){nav a{display:none}.unit{min-width:70px}.hero{padding-top:65px}}
+
+/* NEW: scroll reveal */
+.reveal{opacity:0;transform:translateY(25px);transition:opacity .8s ease,transform .8s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+/* NEW: little heart game */
+.heart-game{background:linear-gradient(135deg,#fff0f3,#fff9f0);border:1px solid #f9dce4;border-radius:28px;padding:35px 20px;text-align:center}
+.heart-options{display:flex;justify-content:center;gap:18px;flex-wrap:wrap;margin:25px 0}
+.heart-choice{width:75px;height:75px;border:1px solid #f5cbd7;border-radius:22px;background:white;font-size:35px;transition:.25s}
+.heart-choice:hover{transform:translateY(-7px) rotate(-8deg);background:#ffe3ea}
+#secretMessage{min-height:55px;color:#c94f70;font-weight:bold;line-height:1.8;padding:10px}
+@media(max-width:600px){
+nav a{display:none}
+.unit{min-width:70px}
+.hero{padding-top:65px}
+}
+@media(prefers-reduced-motion:reduce){
+*,*::before,*::after{scroll-behavior:auto!important;animation:none!important;transition:none!important}
+.reveal{opacity:1;transform:none}
+}
 </style>
 </head>
 <body>
@@ -79,11 +102,16 @@ footer{text-align:center;padding:35px;color:#b28d9a;font-size:12px}
 <div id="site">
 <nav>
 <div class="brand">A ♡ R</div>
-<div><a href="#time">Our Time</a><a href="#story">Our Story</a><a href="#letter">A Letter</a></div>
+<div>
+<a href="#time">Our Time</a>
+<a href="#story">Our Story</a>
+<a href="#letter">A Letter</a>
+<a href="#game">Surprise</a>
+</div>
 <button class="music" id="music">♫ Play our song</button>
 </nav>
 
-<section class="hero">
+<section class="hero reveal">
 <div class="eyebrow">Welcome to our little universe</div>
 <h1>Azizul <em>&</em><br>Rifka</h1>
 <p>Dua manusia, satu cerita, dan banyak hal kecil yang ternyata jadi begitu berarti. Ini dunia kecil kita. ♡</p>
@@ -91,7 +119,7 @@ footer{text-align:center;padding:35px;color:#b28d9a;font-size:12px}
 <p>SCROLL PELAN-PELAN ↓</p>
 </section>
 
-<section id="time">
+<section id="time" class="reveal">
 <div class="center">
 <div class="eyebrow">Every second matters</div>
 <h2>And the story goes on...</h2>
@@ -104,7 +132,7 @@ footer{text-align:center;padding:35px;color:#b28d9a;font-size:12px}
 </div>
 </section>
 
-<section id="story">
+<section id="story" class="reveal">
 <div class="center">
 <div class="eyebrow">Little pieces of us</div>
 <h2>Our Little Timeline</h2>
@@ -132,7 +160,7 @@ footer{text-align:center;padding:35px;color:#b28d9a;font-size:12px}
 </div>
 </section>
 
-<section id="letter">
+<section id="letter" class="reveal">
 <div class="center">
 <div class="eyebrow">Sealed with love</div>
 <h2>A Little Letter For You</h2>
@@ -148,7 +176,25 @@ footer{text-align:center;padding:35px;color:#b28d9a;font-size:12px}
 </div>
 </section>
 
-<section>
+<!-- NEW: PICK A LITTLE HEART -->
+<section id="game" class="reveal">
+<div class="center">
+<div class="eyebrow">A tiny surprise for you</div>
+<h2>Pick a Little Heart 💗</h2>
+<p>Pilih salah satu hati. Ada pesan kecil dari Azizul di dalamnya.</p>
+</div>
+<div class="heart-game">
+<div class="eyebrow">Choose your lucky heart</div>
+<div class="heart-options">
+<button class="heart-choice" data-message="Kamu adalah salah satu hal terbaik yang pernah datang di hidupku. ♡">💗</button>
+<button class="heart-choice" data-message="Kalau boleh mengulang waktu, aku tetap ingin bertemu dan memilih kamu. 🥺">💖</button>
+<button class="heart-choice" data-message="Semoga cerita kita tidak pernah kehabisan alasan untuk tersenyum. I love you! 🌷">💕</button>
+</div>
+<p id="secretMessage">Psst... pilih satu hati untuk membuka pesan rahasia! ✨</p>
+</div>
+</section>
+
+<section class="reveal">
 <div class="final">
 <div class="eyebrow">One last question...</div>
 <h2>Rifka, mau terus sama aku untuk tahun-tahun berikutnya? 🥺</h2>
@@ -160,6 +206,7 @@ footer{text-align:center;padding:35px;color:#b28d9a;font-size:12px}
 <p id="response"></p>
 </div>
 </section>
+
 <footer>Made with ♡ by Azizul, for Rifka · 12.11.2023 — forever-ish ✨</footer>
 </div>
 
@@ -171,7 +218,9 @@ document.getElementById('enter').onclick=()=>{
 document.getElementById('gate').style.display='none';
 document.getElementById('site').style.display='block';
 window.scrollTo(0,0);
+revealOnScroll();
 };
+
 document.getElementById('later').onclick=function(){
 this.textContent='Yakin nih? 😝';
 };
@@ -223,6 +272,7 @@ root.appendChild(el);
 setTimeout(()=>el.remove(),4000);
 }
 }
+
 document.getElementById('yes').onclick=()=>{
 document.getElementById('response').textContent='YAY! Aku juga mau terus memilih kamu. I love you, Rifka! 💖';
 hearts();
@@ -231,6 +281,33 @@ document.getElementById('maybe').onclick=()=>{
 document.getElementById('response').textContent='Hehehe, aku tunggu jawaban MAUUU-nya ya! 😚';
 hearts();
 };
+
+// NEW: secret heart messages
+document.querySelectorAll('.heart-choice').forEach(button=>{
+button.onclick=()=>{
+document.getElementById('secretMessage').textContent=button.dataset.message;
+hearts();
+};
+});
+
+// NEW: reveal sections on scroll
+function revealOnScroll(){
+const items=document.querySelectorAll('.reveal');
+if(!('IntersectionObserver' in window)){
+items.forEach(item=>item.classList.add('visible'));
+return;
+}
+const observer=new IntersectionObserver(entries=>{
+entries.forEach(entry=>{
+if(entry.isIntersecting){
+entry.target.classList.add('visible');
+observer.unobserve(entry.target);
+}
+});
+},{threshold:.12});
+items.forEach(item=>observer.observe(item));
+}
+revealOnScroll();
 </script>
 </body>
 </html>
