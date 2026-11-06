@@ -695,6 +695,28 @@ nav a{display:none}
   transform: translateY(-4px);
   box-shadow: 0 8px 18px rgba(220,120,160,0.25);
 }
+ /* MOBILE TOUCH OPTIMIZATION */
+@media (hover: none) and (pointer: coarse) {
+  button:hover {
+    transform: none;
+    filter: none;
+  }
+
+  button:active {
+    transform: scale(0.94);
+    filter: brightness(1.08);
+  }
+
+  button {
+    min-height: 44px;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+
+  .memory-tile {
+    min-height: 0;
+  }
+} 
 </style>
 </head>
 <body>
