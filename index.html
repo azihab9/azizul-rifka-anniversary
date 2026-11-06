@@ -1233,6 +1233,12 @@ function flipMemoryCard(button, card) {
   document.getElementById("memory-moves").textContent = memoryMoves;
 
   if (firstCard.card.photo === secondCard.card.photo) {
+    // SWEET MATCH SOUND
+const matchSound = new Audio(
+  "https://assets.mixkit.co/active_storage/sfx/2000/2000-preview.mp3"
+);
+matchSound.volume = 0.35;
+matchSound.play().catch(() => {});
     firstCard.button.classList.add("matched");
     secondCard.button.classList.add("matched");
 
