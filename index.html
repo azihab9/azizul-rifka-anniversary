@@ -1006,6 +1006,63 @@ nav a{display:none}
 .hero h1 em {
   display: inline;
 }
+  .message-card {
+  max-width: 620px;
+  margin: 30px auto;
+  padding: 28px 22px;
+  background: linear-gradient(145deg, #fff0f4, #fffaf0);
+  border: 1px solid #f4d2dd;
+  border-radius: 24px;
+  box-shadow: 0 12px 30px #b77d9020;
+  text-align: left;
+}
+
+.message-card label {
+  display: block;
+  margin: 16px 0 8px;
+  color: #a94f70;
+  font-weight: 700;
+  font-size: 13px;
+}
+
+.message-card input,
+.message-card textarea {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 14px 15px;
+  border: 1px solid #edc5d2;
+  border-radius: 13px;
+  background: #fff;
+  color: #573b48;
+  font: inherit;
+  outline: none;
+}
+
+.message-card textarea {
+  min-height: 145px;
+  resize: vertical;
+  line-height: 1.7;
+}
+
+.message-card input:focus,
+.message-card textarea:focus {
+  border-color: #d87999;
+  box-shadow: 0 0 0 3px #f9dce455;
+}
+
+.message-card button {
+  width: 100%;
+  margin-top: 18px;
+}
+
+#email-status {
+  min-height: 24px;
+  margin: 14px 0 0;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 700;
+}
 </style>
 </head>
 <body>
@@ -1265,6 +1322,31 @@ nav a{display:none}
 </div>
 <p id="response"></p>
 </div>
+</section>
+
+<section id="message" class="reveal">
+  <div class="center">
+    <div class="eyebrow">A little space for your heart</div>
+    <h2>A Message for Azizul ♡</h2>
+    <p>Ada cerita, harapan, atau sesuatu yang ingin kamu sampaikan? Tulis di sini ya.</p>
+  </div>
+
+  <form class="message-card" id="rifka-message-form">
+    <label for="from-name">Your name</label>
+    <input id="from-name" name="from_name"
+      type="text" value="Rifka" required>
+
+    <label for="love-message">Your message</label>
+    <textarea id="love-message" name="message"
+      placeholder="Tulis isi hatimu di sini... ♡"
+      maxlength="3000" required></textarea>
+
+    <button class="btn" id="send-love-message" type="submit">
+      Send to Azizul ♡
+    </button>
+
+    <p id="email-status" role="status"></p>
+  </form>
 </section>
 
 <footer>Made with ♡ by Azizul, for Rifka · 12.11.2023 — forever-ish ✨</footer>
