@@ -1942,6 +1942,9 @@ setInterval(createFloatingHeart, 1800);
   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
   
 <script>
+  function showLovePopup() {
+  alert("Pesan kamu sudah aku teruskan ya, Tuan Putri Cantik ♡ 💗");
+}
 (function () {
   const form = document.getElementById("rifka-message-form");
   if (!form || !window.emailjs) return;
@@ -1973,8 +1976,7 @@ setInterval(createFloatingHeart, 1800);
         form
       );
 
-      status.textContent =
-        "Pesanmu berhasil dikirim ke Azizul! Terima kasih, Rifka. 💗";
+     showLovePopup();
 
       form.reset();
       document.getElementById("from-name").value = "Rifka";
