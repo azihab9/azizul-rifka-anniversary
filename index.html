@@ -811,6 +811,36 @@ nav a{display:none}
   30% { transform: scale(1.04); }
   40% { transform: scale(1); }
 }
+  /* SAKURA FALLING INTRO */
+.sakura-petal {
+  position: absolute;
+  top: -30px;
+  z-index: 0;
+  pointer-events: none;
+  animation: sakuraFall linear forwards;
+}
+
+@keyframes sakuraFall {
+  0% {
+    transform: translateY(-30px) rotate(0deg);
+    opacity: 0;
+  }
+  15% { opacity: 0.9; }
+  100% {
+    transform: translateY(110vh) rotate(540deg);
+    opacity: 0;
+  }
+}
+
+#gate .gate-card {
+  z-index: 2;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sakura-petal {
+    display: none;
+  }
+}
 </style>
 </head>
 <body>
