@@ -954,6 +954,20 @@ document.getElementById("quiz-next").onclick = () => {
 
     document.getElementById("quiz-score").textContent =
       `Your score: ${quizScore} / 5 💗`;
+    const loveMessage = document.getElementById("quiz-love-message");
+
+if (quizScore === 5) {
+  loveMessage.textContent =
+    "You know our love story by heart! You're my forever person. 💖";
+} else if (quizScore >= 3) {
+  loveMessage.textContent =
+    "You know us so well! Every memory with you is precious. 💕";
+} else {
+  loveMessage.textContent =
+    "It's okay, we still have forever to learn about each other. ♡";
+}
+
+makeLoveExplosion(document.getElementById("quiz-result"));
   }
 };
 
