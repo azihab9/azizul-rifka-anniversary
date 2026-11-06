@@ -1251,6 +1251,22 @@ matchSound.play().catch(() => {});
 
     if (memoryPairs === 3) {
       document.getElementById("memory-result").style.display = "block";
+      // ROMANTIC SCORE MESSAGE
+const memoryMessage = document.createElement("p");
+memoryMessage.id = "memory-love-message";
+
+if (memoryMoves <= 5) {
+  memoryMessage.textContent =
+    "Wow! You know our memories by heart! You're amazing, my love. 💖";
+} else if (memoryMoves <= 8) {
+  memoryMessage.textContent =
+    "Every little memory is worth finding, just like you. 💕";
+} else {
+  memoryMessage.textContent =
+    "No matter how many tries, I'll always choose you. ♡";
+}
+
+document.getElementById("memory-result").appendChild(memoryMessage);
       makeLoveExplosion(document.getElementById("memory-result"));
       // ROMANTIC MEMORY CONFETTI
 const memoryConfetti = ["💗", "💕", "✨", "🌸", "💖"];
