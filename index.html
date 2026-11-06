@@ -12,7 +12,25 @@
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{margin:0;background:#fffaf4;color:#573b48;font-family:'DM Sans',sans-serif}
-button{font:inherit;cursor:pointer}
+button {
+  font: inherit;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  transform: translateY(-3px);
+  filter: brightness(1.05);
+}
+
+button:active {
+  transform: scale(0.94);
+}
+
+button:focus-visible {
+  outline: 3px solid #e99abb;
+  outline-offset: 4px;
+}
 #gate{min-height:100vh;display:grid;place-items:center;padding:20px;background:linear-gradient(135deg,#ffe1e9,#fffaf4,#ffe9d9)}
 .gate-card{max-width:460px;text-align:center;background:#ffffffdd;padding:40px 25px;border-radius:30px;box-shadow:0 20px 60px #b75b7720}
 .sticker{font-size:55px}
