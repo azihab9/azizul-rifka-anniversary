@@ -752,6 +752,7 @@ items.forEach(item=>observer.observe(item));
 revealOnScroll();
 </script>
   <script>
+<script>
 function makeLoveExplosion(element) {
   const rect = element.getBoundingClientRect();
   const hearts = ["💗", "💖", "💕", "💘", "❤️", "💞"];
@@ -771,7 +772,9 @@ function makeLoveExplosion(element) {
     document.body.appendChild(heart);
     setTimeout(() => heart.remove(), 1800);
   }
-  function showRandomLoveNote() {
+}
+
+function showRandomLoveNote() {
   const messages = [
     "You are my favorite part of every day. ♡",
     "If I could choose again, I would still choose you.",
@@ -788,10 +791,16 @@ function makeLoveExplosion(element) {
   const note = document.getElementById("randomLoveNote");
   if (!note) return;
 
-  const randomIndex = Math.floor(Math.random() * messages.length);
+  let randomIndex;
+
+  do {
+    randomIndex = Math.floor(Math.random() * messages.length);
+  } while (messages.length > 1 &&
+           messages[randomIndex] === note.textContent);
+
   note.textContent = messages[randomIndex];
 }
-}
+</script>
 </script>
 </body>
 </html>
