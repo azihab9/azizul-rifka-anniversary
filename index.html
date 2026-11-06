@@ -987,6 +987,24 @@ if (quizScore === 5) {
 }
 
 makeLoveExplosion(document.getElementById("quiz-result"));
+    // ROMANTIC CONFETTI
+const confettiItems = ["💗", "💕", "♡", "✨", "🌸"];
+
+for (let i = 0; i < 45; i++) {
+  const confetti = document.createElement("span");
+
+  confetti.className = "quiz-confetti";
+  confetti.textContent =
+    confettiItems[Math.floor(Math.random() * confettiItems.length)];
+
+  confetti.style.left = Math.random() * 100 + "vw";
+  confetti.style.animationDelay = Math.random() * 2 + "s";
+  confetti.style.fontSize = (14 + Math.random() * 18) + "px";
+
+  document.body.appendChild(confetti);
+
+  setTimeout(() => confetti.remove(), 5000);
+}
   }
 };
 
