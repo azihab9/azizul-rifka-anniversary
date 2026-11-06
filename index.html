@@ -422,6 +422,21 @@ nav a{display:none}
 .secret-envelope[open] .letter-signature strong {
   animation: signatureReveal 2s ease-out .5s both;
 }
+  /* ROMANTIC SIGNATURE GLOW */
+@keyframes signatureGlow {
+  0%, 100% {
+    text-shadow: 0 0 3px #f7b6ca;
+  }
+  50% {
+    text-shadow: 0 0 14px #ff8fb3, 0 0 22px #ffc2d5;
+  }
+}
+
+.secret-envelope[open] .letter-signature strong {
+  animation:
+    signatureReveal 2s ease-out .5s both,
+    signatureGlow 2.5s ease-in-out 2.5s infinite;
+}
 </style>
 </head>
 <body>
