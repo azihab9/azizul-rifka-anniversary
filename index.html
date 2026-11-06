@@ -1149,6 +1149,9 @@ nav a{display:none}
 <script>
 document.getElementById('enter').onclick=()=>{
   createGateBurst(document.getElementById('enter'));
+  const sparkle = document.getElementById('sparkleSound');
+sparkle.currentTime = 0;
+sparkle.play().catch(() => {});
   const gate = document.getElementById('gate');
 gate.classList.add('gate-closing');
 
