@@ -883,6 +883,42 @@ nav a{display:none}
   transform: scale(1.05);
   pointer-events: none;
 }
+  #welcomeMessage {
+  text-align: center;
+  padding: 28px 15px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 1.2s ease;
+  pointer-events: none;
+}
+
+#welcomeMessage.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+#welcomeMessage span {
+  display: block;
+  font-size: 32px;
+  color: #e88caf;
+  animation: welcomeHeart 2s infinite;
+}
+
+#welcomeMessage p {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  color: #bd668c;
+  margin: 8px 0;
+}
+
+#welcomeMessage small {
+  color: #a77b91;
+  letter-spacing: 1px;
+}
+
+@keyframes welcomeHeart {
+  50% { transform: scale(1.25); }
+}
 </style>
 </head>
 <body>
@@ -902,6 +938,11 @@ nav a{display:none}
 </div>
 
 <div id="site">
+  <div id="welcomeMessage">
+  <span>♡</span>
+  <p>Welcome to our little universe, Rifka</p>
+  <small>Where every little thing is about us ✨</small>
+</div>
 <nav>
 <div class="brand">A ♡ R</div>
 <div>
@@ -1159,6 +1200,9 @@ setTimeout(() => {
   gate.style.display = 'none';
 }, 800);
   document.getElementById('site').style.display='block';
+  setTimeout(() => {
+  document.getElementById('welcomeMessage').classList.add('show');
+}, 500);
   document.getElementById('site').style.opacity='1';
   window.scrollTo(0,0);
   revealOnScroll();
