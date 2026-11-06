@@ -1252,6 +1252,24 @@ matchSound.play().catch(() => {});
     if (memoryPairs === 3) {
       document.getElementById("memory-result").style.display = "block";
       makeLoveExplosion(document.getElementById("memory-result"));
+      // ROMANTIC MEMORY CONFETTI
+const memoryConfetti = ["💗", "💕", "✨", "🌸", "💖"];
+
+for (let i = 0; i < 35; i++) {
+  const item = document.createElement("span");
+
+  item.className = "quiz-confetti";
+  item.textContent =
+    memoryConfetti[Math.floor(Math.random() * memoryConfetti.length)];
+
+  item.style.left = Math.random() * 100 + "vw";
+  item.style.animationDelay = Math.random() * 2 + "s";
+  item.style.fontSize = (16 + Math.random() * 20) + "px";
+
+  document.body.appendChild(item);
+
+  setTimeout(() => item.remove(), 5000);
+}
     }
   } else {
     lockBoard = true;
