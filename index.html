@@ -1940,5 +1940,56 @@ setInterval(createFloatingHeart, 1800);
 }
 </script>
   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  
+<script>
+(function () {
+  const form = document.getElementById("rifka-message-form");
+  if (!form || !window.emailjs) return;
+
+  emailjs.init({
+    publicKey: "SG0B6KMMwKlS1kOiG"
+  });
+
+  form.addEventListener("submit", async function (event) {
+    event.preventDefault();
+
+    const button = document.getElementById("send-love-message");
+    const status = document.getElementById("email-status");
+    const message = document.getElementById("love-message").value.trim();
+
+    if (!message) {
+      status.textContent = "Tulis pesan kecilmu dulu ya ♡";
+      return;
+    }
+
+    button.disabled = true;
+    button.textContent = "Sending your love... ♡";
+    status.textContent = "Sedang mengirim pesan...";
+
+    try {
+      await emailjs.sendForm(
+        "service_ojf2qgc",
+        "template_xy65fyb",
+        form
+      );
+
+      status.textContent =
+        "Pesanmu berhasil dikirim ke Azizul! Terima kasih, Rifka. 💗";
+
+      form.reset();
+      document.getElementById("from-name").value = "Rifka";
+
+    } catch (error) {
+      console.error("EmailJS send failed:", error);
+      status.textContent =
+        "Pesan belum terkirim. Coba lagi sebentar ya.";
+    } finally {
+      button.disabled = false;
+      button.textContent = "Send to Azizul ♡";
+    }
+  });
+})();
+</script>
+
 </body>
 </html>
