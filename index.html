@@ -254,6 +254,44 @@ nav a{display:none}
   from{opacity:0;transform:translateY(15px)}
   to{opacity:1;transform:translateY(0)}
 }
+  /* HEART SHAPED LOVE BUTTON */
+.secret-envelope summary{
+  width:240px;
+  height:210px;
+  margin:15px auto;
+  padding:45px 35px 25px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  box-sizing:border-box;
+  border:none;
+  border-radius:0;
+  background:linear-gradient(145deg,#ff9eb8,#e95c87);
+  color:white;
+  font-family:'Playfair Display',serif;
+  font-size:19px;
+  font-weight:700;
+  line-height:1.5;
+  clip-path:polygon(
+    50% 95%,10% 55%,0 35%,5% 15%,
+    20% 5%,35% 5%,50% 23%,
+    65% 5%,80% 5%,95% 15%,
+    100% 35%,90% 55%
+  );
+  filter:drop-shadow(0 8px 10px #d66b8c55);
+  transition:transform .3s ease,filter .3s ease;
+}
+
+.secret-envelope summary:hover{
+  background:linear-gradient(145deg,#ffb2c6,#df4779);
+  transform:scale(1.08);
+  filter:drop-shadow(0 12px 14px #d66b8c70);
+}
+
+.secret-envelope[open] summary{
+  transform:scale(.95);
+}
 </style>
 </head>
 <body>
