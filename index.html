@@ -452,6 +452,83 @@ nav a{display:none}
   font-size: 16px;
   box-shadow: 0 5px 15px #e99ab422;
 }
+  /* OUR LOVE QUIZ DESIGN */
+.love-quiz-card {
+  max-width: 520px;
+  margin: 30px auto;
+  padding: 30px 24px;
+  background: linear-gradient(145deg, #fffaf5, #ffeaf1);
+  border: 1px solid #f4c6d4;
+  border-radius: 25px;
+  box-shadow: 0 12px 35px #d98ba633;
+  text-align: center;
+}
+
+#quiz-progress {
+  color: #c36a89;
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 22px;
+}
+
+#quiz-question {
+  color: #a94f70;
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  margin-bottom: 25px;
+}
+
+#quiz-options {
+  display: grid;
+  gap: 12px;
+}
+
+.quiz-option {
+  padding: 14px;
+  border: 1px solid #edb5c8;
+  border-radius: 15px;
+  background: white;
+  color: #a94f70;
+  font-size: 15px;
+  cursor: pointer;
+  transition: .25s;
+}
+
+.quiz-option:hover {
+  background: #ffe1eb;
+  transform: translateY(-3px);
+}
+
+.quiz-option.correct {
+  background: #d9f5df;
+  border-color: #8ac99a;
+}
+
+.quiz-option.wrong {
+  background: #ffe0e0;
+  border-color: #e99a9a;
+}
+
+#quiz-feedback {
+  color: #bd587c;
+  font-weight: 600;
+  margin-top: 18px;
+}
+
+#quiz-next {
+  margin-top: 15px;
+  padding: 13px 25px;
+  border: none;
+  border-radius: 30px;
+  background: #e8759b;
+  color: white;
+  cursor: pointer;
+}
+
+#quiz-result {
+  color: #a94f70;
+  line-height: 1.8;
+}
 </style>
 </head>
 <body>
@@ -617,6 +694,37 @@ nav a{display:none}
 </div>
     </div>
   </details>
+</section>
+  <!-- OUR LOVE QUIZ -->
+<section id="love-quiz" class="reveal">
+  <div class="center">
+    <p class="eyebrow">A LITTLE GAME FOR TWO</p>
+    <h2>Our Love Quiz ♡</h2>
+    <p>How well do you know our little world?</p>
+  </div>
+
+  <div class="love-quiz-card">
+    <div id="quiz-progress">Question 1 of 5</div>
+
+    <h3 id="quiz-question">
+      When did our story begin? ♡
+    </h3>
+
+    <div id="quiz-options"></div>
+
+    <p id="quiz-feedback"></p>
+
+    <button id="quiz-next" style="display:none">
+      Next Question ♡
+    </button>
+
+    <div id="quiz-result" style="display:none">
+      <h3>You completed our little quiz! 💗</h3>
+      <p id="quiz-score"></p>
+      <p>Whatever the score, you're still my favorite person.</p>
+      <strong>Love, Azizul ♡</strong>
+    </div>
+  </div>
 </section>
 <!-- NEW: PICK A LITTLE HEART -->
 <section id="game" class="reveal">
