@@ -647,6 +647,36 @@ nav a{display:none}
     gap: 8px;
   }
 }
+  /* MEMORY GAME ANIMATIONS */
+.memory-tile {
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+  transform-style: preserve-3d;
+}
+
+.memory-tile.flipped {
+  animation: memoryFlip 0.4s ease;
+}
+
+@keyframes memoryFlip {
+  0% { transform: rotateY(0deg) scale(0.9); }
+  50% { transform: rotateY(90deg) scale(1.08); }
+  100% { transform: rotateY(0deg) scale(1); }
+}
+
+.memory-tile.matched {
+  animation: memoryMatch 0.55s ease;
+}
+
+@keyframes memoryMatch {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.13) rotate(3deg); }
+  100% { transform: scale(1); }
+}
+
+.memory-tile:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 18px rgba(220,120,160,0.25);
+}
 </style>
 </head>
 <body>
