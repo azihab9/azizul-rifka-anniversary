@@ -251,6 +251,25 @@ nav a{display:none}
 .secret-envelope[open] .secret-message {
   animation: letterAppear 1s ease both;
 }
+  .secret-envelope[open] .secret-message {
+  background: linear-gradient(145deg, #fffaf0, #fff0f4);
+  border: 1px solid #f4c6d4;
+  border-radius: 18px;
+  box-shadow: 0 12px 30px #d98ba633;
+  padding: 28px;
+  position: relative;
+  overflow: hidden;
+}
+
+.secret-envelope[open] .secret-message::before {
+  content: "♡";
+  position: absolute;
+  top: 8px;
+  right: 16px;
+  font-size: 35px;
+  color: #f3b2c5;
+  opacity: .5;
+}
 
 .secret-message h3{
   margin-top:0;
