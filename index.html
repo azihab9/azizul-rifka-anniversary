@@ -1148,7 +1148,12 @@ nav a{display:none}
 <script>
 document.getElementById('enter').onclick=()=>{
   createGateBurst(document.getElementById('enter'));
-  document.getElementById('gate').style.display='none';
+  const gate = document.getElementById('gate');
+gate.classList.add('gate-closing');
+
+setTimeout(() => {
+  gate.style.display = 'none';
+}, 800);
   document.getElementById('site').style.display='block';
   document.getElementById('site').style.opacity='1';
   window.scrollTo(0,0);
