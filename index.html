@@ -55,7 +55,21 @@ section{max-width:950px;margin:auto;padding:75px 22px}
 .center{text-align:center;margin-bottom:35px}
 .center h2{font-size:clamp(30px,6vw,45px);margin-bottom:10px}
 .counter-box,.final{background:#fff0f3;border:1px solid #f9dce4;border-radius:28px;padding:30px 15px;text-align:center}
-.counter{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin:25px 0}
+.counter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: nowrap;
+  margin: 25px 0;
+  width: 100%;
+}
+
+.counter > div {
+  flex: 1;
+  min-width: 0;
+  padding: 12px 4px;
+}
 .unit{background:white;padding:15px;border-radius:17px;min-width:85px}
 .unit strong{display:block;font-size:35px;color:#c94f70}
 .unit span{font-size:11px;color:#987c88}
