@@ -529,6 +529,25 @@ nav a{display:none}
   color: #a94f70;
   line-height: 1.8;
 }
+  /* LOVE QUIZ CONFETTI */
+.quiz-confetti {
+  position: fixed;
+  top: -20px;
+  z-index: 99999;
+  pointer-events: none;
+  animation: confettiFall 3s ease-in forwards;
+}
+
+@keyframes confettiFall {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(110vh) rotate(720deg);
+    opacity: 0;
+  }
+}
 </style>
 </head>
 <body>
