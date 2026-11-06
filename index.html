@@ -320,6 +320,25 @@ nav a{display:none}
     animation: none;
   }
 }
+  /* FLOATING LOVE EXPLOSION */
+.love-particle {
+  position: fixed;
+  z-index: 9999;
+  pointer-events: none;
+  font-size: 24px;
+  animation: loveFly 1.8s ease-out forwards;
+}
+
+@keyframes loveFly {
+  0% {
+    opacity: 1;
+    transform: translate(0, 0) scale(.5) rotate(0deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(var(--x), var(--y)) scale(1.5) rotate(360deg);
+  }
+}
 </style>
 </head>
 <body>
@@ -461,7 +480,7 @@ nav a{display:none}
     <p>There's something I want you to read.</p>
   </div>
 
-  <details class="secret-envelope">
+ <details class="secret-envelope" ontoggle="if(this.open) makeLoveExplosion(this)">
     <summary>Open your secret letter ♡</summary>
     <div class="secret-message">
       <h3>Dear Rifka,</h3>
