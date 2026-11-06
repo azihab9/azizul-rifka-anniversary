@@ -405,6 +405,23 @@ nav a{display:none}
   font-style: italic;
   color: #e15d88;
 }
+  /* SIGNATURE WRITING EFFECT */
+@keyframes signatureReveal {
+  from {
+    opacity: 0;
+    transform: translateX(25px);
+    filter: blur(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+    filter: blur(0);
+  }
+}
+
+.secret-envelope[open] .letter-signature strong {
+  animation: signatureReveal 2s ease-out .5s both;
+}
 </style>
 </head>
 <body>
