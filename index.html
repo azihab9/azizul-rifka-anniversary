@@ -1625,6 +1625,13 @@ nav a{display:none}
 <script>
 document.getElementById('enter').onclick=()=>{
   createGateBurst(document.getElementById('enter'));
+    const song = document.getElementById('song');
+
+  song.play().then(() => {
+    document.getElementById('music').textContent = '♫ Pause our song';
+  }).catch(error => {
+    console.log('Musik belum bisa diputar:', error);
+  });
   const sparkle = document.getElementById('sparkleSound');
 sparkle.currentTime = 0;
 sparkle.play().catch(() => {});
