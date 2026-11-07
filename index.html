@@ -1583,6 +1583,8 @@ nav a{display:none}
 
 <input type="hidden" id="last-question-answer"
   name="last_question_answer" value="Belum menjawab">
+    <input type="hidden" id="quiz-results"
+  name="quiz_results" value="Belum mengerjakan quiz">
 
     <label for="from-name">Your name</label>
     <input id="from-name" name="from_name"
@@ -1785,6 +1787,7 @@ const loveQuestions = [
 let currentQuestion = 0;
 let quizScore = 0;
 let quizAnswered = false;
+  let quizAnswers = [];
 
 function showLoveQuestion() {
   const q = loveQuestions[currentQuestion];
@@ -1811,7 +1814,11 @@ function showLoveQuestion() {
       const buttons = document.querySelectorAll(".quiz-option");
 
       buttons[q.answer].classList.add("correct");
-
+quizAnswers[currentQuestion] = {
+  question: q.question,
+  answer: option,
+  correct: index === q.answer
+};
       if (index === q.answer) {
         quizScore++;
         document.getElementById("quiz-feedback").textContent =
@@ -1848,6 +1855,13 @@ document.getElementById("quiz-next").onclick = () => {
 
     document.getElementById("quiz-score").textContent =
       `Your score: ${quizScore} / 5 💗`;
+    document.getElementById("quiz-results").value =
+  quizAnswers.map((item, index) =>
+    `${index + 1}. ${item.question}\n` +
+    `Jawaban: ${item.answer}\n` +
+    `Hasil: ${item.correct ? "Benar" : "Salah"}`
+  ).join("\n\n") +
+  `\n\nSkor akhir: ${quizScore} / ${loveQuestions.length}`;
     const loveMessage = document.getElementById("quiz-love-message");
 
 if (quizScore === 5) {
