@@ -196,31 +196,31 @@ nav a{display:none}
   .counter-box{
     padding:24px 14px;
   }
+.counter{
+  display:grid;
+  grid-template-columns:repeat(6,minmax(0,1fr));
+  gap:3px;
+  margin:20px 0;
+}
 
-  .counter{
-    display:grid;
-    grid-template-columns:repeat(3,minmax(0,1fr));
-    gap:9px;
-    margin:20px 0;
-  }
+.counter > div{
+  min-width:0;
+  width:100%;
+  padding:10px 1px;
+  border-radius:10px;
+}
 
-  .counter > div{
-    min-width:0;
-    width:100%;
-    padding:12px 4px;
-    overflow:hidden;
-    border-radius:16px;
-  }
+.counter .unit strong{
+  font-size:clamp(13px,3.5vw,20px);
+}
 
-  .counter .unit strong{
-    font-size:clamp(25px,8vw,34px);
-  }
+.counter .unit span{
+  font-size:clamp(6px,1.8vw,9px);
+  line-height:1.2;
+  white-space:normal;
+}
+ 
 
-  .counter .unit span{
-    font-size:11px;
-    line-height:1.25;
-    white-space:normal;
-  }
 
   .counter-box > p{
     font-size:14px;
