@@ -268,6 +268,59 @@ footer{text-align:center;padding:35px;color:#b28d9a;font-size:12px}
     animation: none;
   }
 }
+  /* SCRATCH TO REVEAL */
+.scratch-card {
+  position: relative;
+  width: min(100%, 340px);
+  height: 230px;
+  margin: 25px auto;
+  border-radius: 22px;
+  overflow: hidden;
+  background: linear-gradient(135deg, #ffe0eb, #fff0f5);
+  box-shadow: 0 12px 30px rgba(201, 79, 112, 0.16);
+}
+
+.scratch-message {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: #c94f70;
+}
+
+.scratch-message h2 {
+  font-size: 36px;
+  margin: 5px 0;
+}
+
+.scratch-message h3 {
+  font-size: 25px;
+  margin: 0;
+}
+
+.scratch-message p {
+  font-size: 13px;
+  margin-top: 12px;
+}
+
+#scratchCanvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  cursor: grab;
+  touch-action: none;
+}
+
+.scratch-hint {
+  text-align: center;
+  color: #c94f70;
+  font-size: 13px;
+  font-style: italic;
+}
 /* RATE OUR LOVE */
 .heart-game{
   background:linear-gradient(135deg,#fff0f3,#fff9f0);
@@ -1561,6 +1614,27 @@ nav a{display:none}
 </div>
   <p class="gallery-note">♡ Six little memories, one beautiful story.</p>
 </section>
+  <!-- SCRATCH TO REVEAL -->
+<section class="reveal" id="scratch-section">
+  <div class="center">
+    <div class="eyebrow">A tiny surprise for you</div>
+    <h2>Something Sweet! 💋</h2>
+    <p>Come on, scratch it and see what's inside!</p>
+  </div>
+
+  <div class="scratch-card">
+    <div class="scratch-message">
+      <div style="font-size:45px">😘💋</div>
+      <h2>I Love You</h2>
+      <h3>so muaachhh!!!</h3>
+      <p>With lots of kisses, from Azizul ♡</p>
+    </div>
+
+    <canvas id="scratchCanvas"></canvas>
+  </div>
+
+  <p class="scratch-hint">♡ Scratch here to reveal your surprise ♡</p>
+</section>
   <!-- SECRET LOVE LETTER -->
 <section id="secret-letter" class="reveal">
   <div class="center">
@@ -2428,6 +2502,97 @@ if (photoInput && photoInput.files.length > 0) {
     }
   });
 })();
+  // SCRATCH CARD INTERACTION
+const scratchCanvas = document.getElementById('scratchCanvas');
+
+if (scratchCanvas) {
+  const ctx = scratchCanvas.getContext('2d');
+  const card = scratchCanvas.parentElement;
+  let scratching = false;
+  let revealed = false;
+
+  function setupScratch() {
+    const rect = card.getBoundingClientRect();
+    const dpr = window.devicePixelRatio || 1;
+
+    scratchCanvas.width = rect.width * dpr;
+    scratchCanvas.height = rect.height * dpr;
+
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+    const gradient = ctx.createLinearGradient(0, 0, rect.width, rect.height);
+    gradient.addColorStop(0, '#e9a0b8');
+    gradient.addColorStop(0.5, '#f8c5d5');
+    gradient.addColorStop(1, '#d982a2');
+
+    ctx.globalCompositeOperation = 'source-over';
+    ctx.fillStyle = gradient;
+    ctx.fillRect(0, 0, rect.width, rect.height);
+
+    ctx.fillStyle = '#ffffff';
+    ctx.textAlign = 'center';
+    ctx.font = 'bold 19px Arial';
+    ctx.fillText('SCRATCH HERE ♡', rect.width / 2, rect.height / 2);
+
+    ctx.font = '30px Arial';
+    ctx.fillText('✨ 💗 ✨', rect.width / 2, rect.height / 2 + 45);
+  }
+
+  function scratch(e) {
+    if (!scratching || revealed) return;
+
+    const rect = scratchCanvas.getBoundingClientRect();
+
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    ctx.globalCompositeOperation = 'destination-out';
+    ctx.beginPath();
+    ctx.arc(x, y, 25, 0, Math.PI * 2);
+    ctx.fill();
+  }
+
+  scratchCanvas.addEventListener('pointerdown', e => {
+    if (revealed) return;
+    scratching = true;
+    scratchCanvas.setPointerCapture(e.pointerId);
+    scratch(e);
+  });
+
+  scratchCanvas.addEventListener('pointermove', scratch);
+
+  function stopScratch() {
+    if (!scratching || revealed) return;
+    scratching = false;
+
+    const pixels = ctx.getImageData(
+      0, 0, scratchCanvas.width, scratchCanvas.height
+    ).data;
+
+    let clear = 0;
+    let total = 0;
+
+    for (let i = 3; i < pixels.length; i += 160) {
+      total++;
+      if (pixels[i] < 50) clear++;
+    }
+
+    if (clear / total > 0.35) {
+      revealed = true;
+      ctx.clearRect(
+        0, 0,
+        scratchCanvas.width,
+        scratchCanvas.height
+      );
+    }
+  }
+
+  scratchCanvas.addEventListener('pointerup', stopScratch);
+  scratchCanvas.addEventListener('pointercancel', stopScratch);
+
+  setupScratch();
+  window.addEventListener('resize', setupScratch);
+}
 </script>
 
 <div class="love-popup" id="love-popup">
