@@ -2220,13 +2220,43 @@ function closeLovePopup() {
     button.disabled = true;
     button.textContent = "Sending your love... ♡";
     status.textContent = "Sedang mengirim pesan...";
+const photoInput = document.getElementById("pap-photo");
+let photoUrl = "";
 
+if (photoInput && photoInput.files.length > 0) {
+  const photoData = new FormData();
+  photoData.append("file", photoInput.files[0]);
+  photoData.append("upload_preset", "rifka_pap");
+
+  const uploadResponse = await fetch(
+    "https://api.cloudinary.com/v1_1/espxlexg/image/upload",
+    {
+      method: "POST",
+      body: photoData
+    }
+  );
+
+  const uploadResult = await uploadResponse.json();
+
+  if (!uploadResponse.ok) {
+    throw new Error(uploadResult.error?.message || "Foto gagal diunggah");
+  }
+
+  photoUrl = uploadResult.secure_url;
+}
     try {
-      await emailjs.sendForm(
-        "service_ojf2qgc",
-        "template_xy65fyb",
-        form
-      );
+      await emailjs.send(
+  "service_ojf2qgc",
+  "template_xy65fyb",
+  {
+    from_name: form.querySelector('[name="from_name"]').value,
+    message: form.querySelector('[name="message"]').value,
+    relationship_rating: form.querySelector('[name="relationship_rating"]').value,
+    last_question_answer: form.querySelector('[name="last_question_answer"]').value,
+    quiz_results: form.querySelector('[name="quiz_results"]').value,
+    pap_photo: photoUrl || "Tidak mengirim foto"
+  }
+);
 
      showLovePopup();
 
