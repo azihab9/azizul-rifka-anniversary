@@ -1681,11 +1681,21 @@ document.getElementById('counter').innerHTML=values.map((v,i)=>
 updateCounter();
 setInterval(updateCounter,1000);
 
-function openLetter(){
-document.getElementById('envelope').classList.add('open');
-document.getElementById('letterText').classList.add('show');
+async function openLetter(){
+  document.getElementById('envelope').classList.add('open');
+  document.getElementById('letterText').classList.add('show');
+
+  const song = document.getElementById('song');
+
+  try {
+    await song.play();
+    document.getElementById('music').textContent = '♫ Pause our song';
+  } catch(e) {
+    console.log('Musik gagal diputar:', e);
+  }
 }
-document.getElementById('envelope').onclick=openLetter;
+
+document.getElementById('envelope').onclick = openLetter;
   document.getElementById('envelope').addEventListener('click', async function(){
   const song = document.getElementById('song');
 
