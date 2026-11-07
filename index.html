@@ -176,7 +176,83 @@ footer{text-align:center;padding:35px;color:#b28d9a;font-size:12px}
   .polaroid{padding:8px 8px 13px}
   .polaroid p{font-size:14px}
 }
+/* AUTOMATIC MEMORY SLIDER */
+.memory-slider {
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  margin: 34px 0 12px;
+  padding: 10px 0;
+  scrollbar-width: none;
+  touch-action: pan-x;
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 5%,
+    black 95%,
+    transparent
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 5%,
+    black 95%,
+    transparent
+  );
+}
 
+.memory-slider::-webkit-scrollbar {
+  display: none;
+}
+
+.memory-track {
+  display: flex;
+  width: max-content;
+  gap: 16px;
+  animation: memoryScroll 48s linear infinite;
+}
+
+.memory-track img {
+  width: 220px;
+  height: 270px;
+  object-fit: cover;
+  border-radius: 16px;
+  flex: 0 0 auto;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.10);
+}
+
+.memory-slider:hover .memory-track,
+.memory-slider:active .memory-track {
+  animation-play-state: paused;
+}
+
+@keyframes memoryScroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (max-width: 650px) {
+  .memory-track {
+    gap: 12px;
+    animation-duration: 38s;
+  }
+
+  .memory-track img {
+    width: 155px;
+    height: 195px;
+    border-radius: 13px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .memory-track {
+    animation: none;
+  }
+}
 /* RATE OUR LOVE */
 .heart-game{
   background:linear-gradient(135deg,#fff0f3,#fff9f0);
@@ -1430,7 +1506,41 @@ nav a{display:none}
       <p>And this is only the beginning ♡</p>
     </div>
   </div>
+<!-- EXTRA MEMORY SLIDER -->
+<div class="memory-slider">
+  <div class="memory-track">
+    <img src="assets/1.jpeg" alt="Our memory">
+    <img src="assets/2.jpeg" alt="Our memory">
+    <img src="assets/3.jpeg" alt="Our memory">
+    <img src="assets/4.jpeg" alt="Our memory">
+    <img src="assets/5.jpeg" alt="Our memory">
+    <img src="assets/6.jpeg" alt="Our memory">
+    <img src="assets/7.jpeg" alt="Our memory">
+    <img src="assets/8.jpeg" alt="Our memory">
+    <img src="assets/11.jpeg" alt="Our memory">
+    <img src="assets/12.jpeg" alt="Our memory">
+    <img src="assets/13.jpeg" alt="Our memory">
+    <img src="assets/15.jpeg" alt="Our memory">
+    <img src="assets/16.jpeg" alt="Our memory">
+    <img src="assets/23.jpeg" alt="Our memory">
 
+    <!-- DUPLICATE FOR LOOP -->
+    <img src="assets/1.jpeg" alt="Our memory">
+    <img src="assets/2.jpeg" alt="Our memory">
+    <img src="assets/3.jpeg" alt="Our memory">
+    <img src="assets/4.jpeg" alt="Our memory">
+    <img src="assets/5.jpeg" alt="Our memory">
+    <img src="assets/6.jpeg" alt="Our memory">
+    <img src="assets/7.jpeg" alt="Our memory">
+    <img src="assets/8.jpeg" alt="Our memory">
+    <img src="assets/11.jpeg" alt="Our memory">
+    <img src="assets/12.jpeg" alt="Our memory">
+    <img src="assets/13.jpeg" alt="Our memory">
+    <img src="assets/15.jpeg" alt="Our memory">
+    <img src="assets/16.jpeg" alt="Our memory">
+    <img src="assets/23.jpeg" alt="Our memory">
+  </div>
+</div>
   <p class="gallery-note">♡ Six little memories, one beautiful story.</p>
 </section>
   <!-- SECRET LOVE LETTER -->
