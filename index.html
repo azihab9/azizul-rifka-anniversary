@@ -187,6 +187,59 @@ nav a{display:none}
 .unit{min-width:70px}
 .hero{padding-top:65px}
 }
+  /* MOBILE COUNTER FIX */
+@media(max-width:600px){
+  section{
+    padding:48px 18px;
+  }
+
+  .counter-box{
+    padding:24px 14px;
+  }
+
+  .counter{
+    display:grid;
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    gap:9px;
+    margin:20px 0;
+  }
+
+  .counter > div{
+    min-width:0;
+    width:100%;
+    padding:12px 4px;
+    overflow:hidden;
+    border-radius:16px;
+  }
+
+  .counter .unit strong{
+    font-size:clamp(25px,8vw,34px);
+  }
+
+  .counter .unit span{
+    font-size:11px;
+    line-height:1.25;
+    white-space:normal;
+  }
+
+  .counter-box > p{
+    font-size:14px;
+    line-height:1.6;
+  }
+
+  .timeline{
+    margin-left:7px;
+    padding-left:22px;
+  }
+
+  .moment{
+    padding:17px;
+  }
+
+  .moment:before{
+    left:-34px;
+  }
+}
 @media(prefers-reduced-motion:reduce){
 *,*::before,*::after{scroll-behavior:auto!important;animation:none!important;transition:none!important}
 .reveal{opacity:1;transform:none}
