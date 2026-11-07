@@ -48,7 +48,36 @@ nav a{margin:0 10px;color:#987c88;text-decoration:none;font-size:13px}
 nav a:hover{color:#c94f70}
 .music{border:1px solid #f1cbd5;border-radius:30px;padding:9px 13px;background:white;color:#c94f70}
 section{max-width:950px;margin:auto;padding:75px 22px}
-.hero{text-align:center;padding-top:90px}
+.hero {
+  text-align: center;
+  padding: 65px 22px 75px;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(180deg, #fff0f4 0%, #fff 100%);
+  border-radius: 0 0 35px 35px;
+}
+
+.hero-photo {
+  width: min(100%, 340px);
+  height: 390px;
+  object-fit: cover;
+  border: 9px solid white;
+  border-radius: 24px;
+  box-shadow: 0 15px 40px rgba(201, 79, 112, .18);
+  transform: rotate(-2deg);
+  margin: 28px auto;
+  display: block;
+}
+
+.hero h1 {
+  font-size: clamp(48px, 10vw, 80px);
+  line-height: 1.1;
+  margin: 22px 0;
+}
+
+.hero h1 em {
+  color: #e87996;
+}
 .hero h1{font-size:clamp(55px,10vw,90px);line-height:1;margin:20px 0}
 .hero h1 em{color:#e87996}
 .eyebrow{font-size:11px;letter-spacing:3px;color:#c94f70;font-weight:bold;text-transform:uppercase}
@@ -1479,11 +1508,21 @@ nav a{display:none}
 </nav>
 
 <section class="hero reveal">
-<div class="eyebrow">Welcome to our little universe</div>
-<h1>Azizul <em>&</em> Rifka</h1>
-<p>Dua manusia, satu cerita, dan banyak hal kecil yang ternyata jadi begitu berarti. Ini dunia kecil kita sayang. ♡</p>
-<div style="font-size:35px;margin-top:25px">♡</div>
-<p>SCROLNYA PELAN PELAN AJA YA SAYANG ↓</p>
+  <div class="eyebrow">♡ THREE YEARS OF US ♡</div>
+
+  <h1>Azizul <em>♡</em> Rifka</h1>
+
+  <p>Every love story is beautiful,<br>
+  but ours is my favorite.</p>
+
+  <img
+    src="assets/23.jpeg"
+    class="hero-photo"
+    alt="Our favorite memory">
+
+  <div style="font-size:30px;margin-top:20px">♡ ✨ ♡</div>
+
+  <p>SCROLL PELAN-PELAN YA SAYANG ↓</p>
 </section>
 
 <section id="time" class="reveal">
