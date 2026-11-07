@@ -1577,6 +1577,13 @@ nav a{display:none}
   </div>
 
   <form class="message-card" id="rifka-message-form">
+    
+<input type="hidden" id="relationship-rating"
+  name="relationship_rating" value="Belum memilih">
+
+<input type="hidden" id="last-question-answer"
+  name="last_question_answer" value="Belum menjawab">
+
     <label for="from-name">Your name</label>
     <input id="from-name" name="from_name"
       type="text" value="Rifka" required>
@@ -1684,14 +1691,19 @@ setTimeout(()=>el.remove(),4000);
 }
 }
 
+
 document.getElementById('yes').onclick=()=>{
-document.getElementById('response').textContent='YAY! Aku juga mau terus memilih kamu. I love you, Rifka! 💖';
-hearts();
+  document.getElementById('last-question-answer').value='MAUUU! ❤️';
+  document.getElementById('response').textContent='YAY! Aku juga mau terus memilih kamu. I love you, Rifka! 💖';
+  hearts();
 };
+
 document.getElementById('maybe').onclick=()=>{
-document.getElementById('response').textContent='Hehehe, aku tunggu jawaban MAUUU-nya ya! 😚';
-hearts();
+  document.getElementById('last-question-answer').value='Hmm, mau sih 🙈';
+  document.getElementById('response').textContent='Hehehe, aku tunggu jawaban MAUUU-nya ya! 😚';
+  hearts();
 };
+
 
 
 // RATE OUR LOVE
@@ -1706,6 +1718,7 @@ const ratingMessages = [
 document.querySelectorAll('.rating-star').forEach(button=>{
   button.addEventListener('click',()=>{
     const rating=Number(button.dataset.rating);
+    document.getElementById('relationship-rating').value=rating+' dari 5 bintang';
 
     document.querySelectorAll('.rating-star').forEach(star=>{
       star.classList.toggle(
