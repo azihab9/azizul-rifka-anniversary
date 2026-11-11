@@ -2617,19 +2617,56 @@ const sakuraInterval = setInterval(() => {
 }, 900);
   // BOTTOM NAVIGATION
 // BOTTOM NAVIGATION - AUTO ACTIVE ON SCROLL
-const bottomNav = document.getElementById('bottomNav');
-const navItems = bottomNav.querySelectorAll('a');
-const moreButton = document.getElementById('moreNavButton');
+// BOTTOM NAVIGATION - SAFE VERSION
+document.addEventListener('DOMContentLoaded', function () {
+    const bottomNav = document.getElementById('bottomNav');
+    const moreButton = document.getElementById('moreNavButton');
+    const moreMenu = document.getElementById('moreMenu');
 
-const mainSections = ['home', 'time', 'story', 'letter', 'gallery'];
-const moreSections = [
-    'scratch-section',
-    'secret-letter',
-    'love-quiz',
-    'memory-game',
-    'game',
-    'message'
-];
+    if (!bottomNav || !moreButton || !moreMenu) return;
+
+    const mainSections = ['home', 'time', 'story', 'letter', 'gallery'];
+    const moreSections = [
+        'scratch-section',
+        'secret-letter',
+        'love-quiz',
+        'memory-game',
+        'game',
+        'message'
+    ];
+
+    function setActiveNav(sectionId) {
+        bottomNav.querySelectorAll('a').forEach(link => {
+            link.classList.toggle(
+                'active',
+                link.getAttribute('href') === '#' + sectionId
+            );
+        });
+
+        moreButton.classList.toggle(
+            'active',
+            moreSections.includes(sectionId)
+        );
+    }
+
+    const observer = new IntersectionObserver(entries => {
+        const visible = entries
+            .filter(entry => entry.isIntersecting)
+            .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+
+        if (visible.length) {
+            setActiveNav(visible[0].target.id);
+        }
+    }, {
+        rootMargin: '-20% 0px -60% 0px',
+        threshold: [0, 0.1, 0.25, 0.5]
+    });
+
+    [...mainSections, ...moreSections].forEach(id => {
+        const section = document.getElementById(id);
+        if (section) observer.observe(section);
+    });
+});
 
 function setActiveNav(sectionId) {
     navItems.forEach(link => {
@@ -2667,14 +2704,26 @@ const observer = new IntersectionObserver((entries) => {
 });
 
 // MORE BUTTON
-// MORE MENU TOGGLE
+// MORE MENU - SAFE VERSION
 const moreButton = document.getElementById('moreNavButton');
 const moreMenu = document.getElementById('moreMenu');
 
-moreButton.addEventListener('click', () => {
-    moreMenu.classList.toggle('show');
-    moreButton.classList.toggle('active');
-});
+if (moreButton && moreMenu) {
+    moreButton.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        moreMenu.classList.toggle('show');
+        moreButton.classList.toggle('active');
+    });
+
+    document.addEventListener('click', function(e) {
+        if (!moreMenu.contains(e.target) && !moreButton.contains(e.target)) {
+            moreMenu.classList.remove('show');
+            moreButton.classList.remove('active');
+        }
+    });
+}
 
 // CLOSE MENU WHEN CLICKING OUTSIDE
 document.addEventListener('click', (e) => {
