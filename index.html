@@ -1500,11 +1500,8 @@ nav a{display:none}
 
 .bottom-nav {
   opacity: 0;
-pointer-events: none;
-transition: opacity .4s ease;
-  .bottom-nav.nav-visible {
-    opacity: 1;
-    pointer-events: auto;
+  pointer-events: none;
+  transition: opacity .4s ease;
 }
   position: fixed !important;
   left: 50% !important;
@@ -1517,7 +1514,7 @@ transition: opacity .4s ease;
   max-width: 620px;
   height: 72px;
 
-  display: none;
+ display: grid;
   grid-template-columns: repeat(6, 1fr);
   align-items: center;
   gap: 5px;
