@@ -1497,12 +1497,9 @@ nav a{display:none}
 /* ===== BOTTOM NAVIGATION ===== */
 
 /* ===== LIQUID GLASS BOTTOM NAV ===== */
+/* ===== LIQUID GLASS BOTTOM NAV ===== */
 
 .bottom-nav {
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity .4s ease;
-}
   position: fixed !important;
   left: 50% !important;
   right: auto !important;
@@ -1514,8 +1511,8 @@ nav a{display:none}
   max-width: 620px;
   height: 72px;
 
- display: grid;
-  grid-template-columns: repeat(6, 1fr);
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
   align-items: center;
   gap: 5px;
 
@@ -1535,10 +1532,17 @@ nav a{display:none}
     inset 0 -1px 1px rgba(220, 170, 190, 0.12);
 
   z-index: 99999;
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+  transition: opacity .4s ease, visibility .4s ease;
 }
 
-.bottom-nav a,
-.bottom-nav button {
+.bottom-nav.nav-visible {
+  opacity: 1;
+  pointer-events: auto;
+  visibility: visible;
+}
   position: relative;
   display: flex;
   flex-direction: column;
@@ -1658,28 +1662,21 @@ nav a{display:none}
 
 /* MOBILE */
 
-@media (max-width: 760px) {
-  .bottom-nav {
-    display: grid;
-  }
+/* ===== RESPONSIVE BOTTOM NAV ===== */
 
+@media (max-width: 760px) {
   body {
     padding-bottom: 110px;
   }
 }
 
 @media (min-width: 761px) {
-  .bottom-nav,
-  .more-menu {
-    display: none !important;
+  body {
+    padding-bottom: 110px;
   }
-}
 
-@media (prefers-reduced-motion: reduce) {
-  .bottom-nav *,
-  .more-menu {
-    animation: none !important;
-    transition: none !important;
+  .bottom-nav {
+    display: grid !important;
   }
 }
 /* SMOOTH SECTION SCROLL */
@@ -2612,9 +2609,9 @@ for (let i = 0; i < 10; i++) {
 const sakuraInterval = setInterval(() => {
   createSakuraPetal();
 }, 900);
-  // BOTTOM NAVIGATION
-// BOTTOM NAVIGATION - AUTO ACTIVE ON SCROLL
-// BOTTOM NAVIGATION - SAFE VERSION
+
+// ===== BOTTOM NAVIGATION =====
+
 document.addEventListener('DOMContentLoaded', function () {
     const bottomNav = document.getElementById('bottomNav');
     const moreButton = document.getElementById('moreNavButton');
@@ -2622,7 +2619,16 @@ document.addEventListener('DOMContentLoaded', function () {
 
     if (!bottomNav || !moreButton || !moreMenu) return;
 
-    const mainSections = ['home', 'time', 'story', 'letter', 'gallery'];
+    const navItems = bottomNav.querySelectorAll('a');
+
+    const mainSections = [
+        'home',
+        'time',
+        'story',
+        'letter',
+        'gallery'
+    ];
+
     const moreSections = [
         'scratch-section',
         'secret-letter',
@@ -2632,8 +2638,9 @@ document.addEventListener('DOMContentLoaded', function () {
         'message'
     ];
 
+    // Aktifkan menu sesuai section yang sedang terlihat
     function setActiveNav(sectionId) {
-        bottomNav.querySelectorAll('a').forEach(link => {
+        navItems.forEach(link => {
             link.classList.toggle(
                 'active',
                 link.getAttribute('href') === '#' + sectionId
@@ -2646,12 +2653,13 @@ document.addEventListener('DOMContentLoaded', function () {
         );
     }
 
+    // Pantau section ketika halaman di-scroll
     const observer = new IntersectionObserver(entries => {
         const visible = entries
             .filter(entry => entry.isIntersecting)
             .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
 
-        if (visible.length) {
+        if (visible.length > 0) {
             setActiveNav(visible[0].target.id);
         }
     }, {
@@ -2661,74 +2669,43 @@ document.addEventListener('DOMContentLoaded', function () {
 
     [...mainSections, ...moreSections].forEach(id => {
         const section = document.getElementById(id);
-        if (section) observer.observe(section);
-    });
-});
 
-function setActiveNav(sectionId) {
-    navItems.forEach(link => {
-        link.classList.toggle(
-            'active',
-            link.getAttribute('href') === '#' + sectionId
-        );
+        if (section) {
+            observer.observe(section);
+        }
     });
 
-    const isMoreSection = moreSections.includes(sectionId);
-
-    moreButton.classList.toggle('active', isMoreSection);
-
-    if (isMoreSection) {
-        moreMenu.classList.remove('show');
-    }
-}
-
-const observer = new IntersectionObserver((entries) => {
-    const visible = entries
-        .filter(entry => entry.isIntersecting)
-        .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
-
-    if (visible.length > 0) {
-        setActiveNav(visible[0].target.id);
-    }
-}, {
-    rootMargin: '-20% 0px -60% 0px',
-    threshold: [0, 0.1, 0.25, 0.5]
-});
-
-[...mainSections, ...moreSections].forEach(id => {
-    const section = document.getElementById(id);
-    if (section) observer.observe(section);
-});
-
-// MORE BUTTON
-// MORE MENU - SAFE VERSION
-const moreButton = document.getElementById('moreNavButton');
-const moreMenu = document.getElementById('moreMenu');
-
-if (moreButton && moreMenu) {
-    moreButton.addEventListener('click', function(e) {
+    // Buka dan tutup menu More
+    moreButton.addEventListener('click', function (e) {
         e.preventDefault();
         e.stopPropagation();
 
         moreMenu.classList.toggle('show');
-        moreButton.classList.toggle('active');
+        moreButton.classList.toggle(
+            'active',
+            moreMenu.classList.contains('show')
+        );
     });
 
-    document.addEventListener('click', function(e) {
-        if (!moreMenu.contains(e.target) && !moreButton.contains(e.target)) {
+    // Tutup menu setelah memilih salah satu section
+    moreMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', function () {
+            moreMenu.classList.remove('show');
+        });
+    });
+
+    // Tutup menu ketika klik di luar navbar
+    document.addEventListener('click', function (e) {
+        if (
+            !moreMenu.contains(e.target) &&
+            !moreButton.contains(e.target)
+        ) {
             moreMenu.classList.remove('show');
             moreButton.classList.remove('active');
         }
     });
-}
-
-// CLOSE MENU WHEN CLICKING OUTSIDE
-document.addEventListener('click', (e) => {
-    if (!moreMenu.contains(e.target) && !moreButton.contains(e.target)) {
-        moreMenu.classList.remove('show');
-        moreButton.classList.remove('active');
-    }
 });
+
 </script>
   
 <script>
