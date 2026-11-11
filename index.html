@@ -1494,6 +1494,121 @@ nav a{display:none}
   border-radius: 16px;
 }
 
+/* ===== BOTTOM NAVIGATION ===== */
+.bottom-nav {
+  position: fixed;
+  bottom: max(12px, env(safe-area-inset-bottom));
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999;
+  width: calc(100% - 24px);
+  max-width: 620px;
+  display: none;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 4px;
+  padding: 9px 7px;
+  border: 1px solid #f4d5df;
+  border-radius: 22px;
+  background: rgba(255,255,255,.90);
+  box-shadow: 0 10px 35px rgba(125,65,86,.16);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+.bottom-nav a,
+.bottom-nav button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  min-width: 0;
+  min-height: 50px;
+  padding: 5px 2px;
+  border: 0;
+  border-radius: 14px;
+  background: transparent;
+  color: #aa8794;
+  text-decoration: none;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.bottom-nav .nav-icon {
+  font-size: 19px;
+}
+
+.bottom-nav a.active,
+.bottom-nav button.active {
+  color: #c94f70;
+  background: #fff0f4;
+}
+
+.more-menu {
+  position: fixed;
+  z-index: 9998;
+  bottom: calc(max(12px, env(safe-area-inset-bottom)) + 78px);
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 35px);
+  max-width: 390px;
+  display: none;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  padding: 13px;
+  border: 1px solid #f4d5df;
+  border-radius: 20px;
+  background: rgba(255,255,255,.97);
+  box-shadow: 0 10px 35px rgba(125,65,86,.18);
+}
+
+.more-menu.show {
+  display: grid;
+}
+
+.more-menu a {
+  display: flex;
+  min-height: 65px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  border-radius: 13px;
+  background: #fff7f9;
+  color: #987c88;
+  text-decoration: none;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.more-menu a span {
+  font-size: 20px;
+}
+
+@media (max-width: 760px) {
+  body {
+    padding-bottom: 100px;
+  }
+
+  .bottom-nav {
+    display: grid;
+  }
+}
+
+@media (min-width: 761px) {
+  .bottom-nav,
+  .more-menu {
+    display: none !important;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 85px;
+}
+
 </style>
 </head>
 <body>
