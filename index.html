@@ -1568,7 +1568,24 @@ nav a{display:none}
   transition: color .3s ease, transform .3s ease;
   -webkit-tap-highlight-color: transparent;
 }
+/* FIX NAVIGATION ITEMS */
 
+.bottom-nav a,
+.bottom-nav button {
+  display: flex !important;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+
+  min-width: 0;
+  width: 100%;
+  height: 56px;
+
+  visibility: visible !important;
+  opacity: 1 !important;
+  color: #a88b98;
+}
 .bottom-nav .nav-icon {
   font-size: 20px;
   line-height: 1;
