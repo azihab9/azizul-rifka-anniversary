@@ -2661,26 +2661,26 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // Pantau section ketika halaman di-scroll
-    const observer = new IntersectionObserver(entries => {
-        const visible = entries
-            .filter(entry => entry.isIntersecting)
-            .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+   // Pantau section aktif saat halaman di-scroll
+const allSections = [...mainSections, ...moreSections];
 
-        if (visible.length > 0) {
-            setActiveNav(visible[0].target.id);
-        }
-    }, {
-        rootMargin: '-20% 0px -60% 0px',
-        threshold: [0, 0.1, 0.25, 0.5]
-    });
+function updateActiveNav() {
+    let currentSection = 'home';
 
-    [...mainSections, ...moreSections].forEach(id => {
+    allSections.forEach(id => {
         const section = document.getElementById(id);
 
-        if (section) {
-            observer.observe(section);
+        if (section && section.getBoundingClientRect().top <= window.innerHeight * 0.4) {
+            currentSection = id;
         }
     });
+
+    setActiveNav(currentSection);
+}
+
+window.addEventListener('scroll', updateActiveNav, { passive: true });
+window.addEventListener('load', updateActiveNav);
+updateActiveNav();
 
     // Buka dan tutup menu More
     moreButton.addEventListener('click', function (e) {
@@ -3037,7 +3037,7 @@ if (scratchCanvas) {
   </a>
 
   <a href="#gallery">
-    <span class="nav-icon">▧</span>
+    <span class="nav-icon">📷</span>
     <span>Photos</span>
   </a>
 
