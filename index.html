@@ -1539,17 +1539,24 @@ nav a{display:none}
 }
 
 .bottom-nav.nav-visible {
+ .bottom-nav.nav-visible {
   opacity: 1;
   pointer-events: auto;
   visibility: visible;
 }
+
+/* NAVIGATION ITEMS */
+
+.bottom-nav a,
+.bottom-nav button {
   position: relative;
-  display: flex;
+  display: flex !important;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 4px;
 
+  width: 100%;
   min-width: 0;
   height: 56px;
   padding: 5px 2px;
@@ -1565,26 +1572,10 @@ nav a{display:none}
   font-weight: 700;
 
   cursor: pointer;
-  transition: color .3s ease, transform .3s ease;
-  -webkit-tap-highlight-color: transparent;
-}
-/* FIX NAVIGATION ITEMS */
-
-.bottom-nav a,
-.bottom-nav button {
-  display: flex !important;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 4px;
-
-  min-width: 0;
-  width: 100%;
-  height: 56px;
-
   visibility: visible !important;
   opacity: 1 !important;
-  color: #a88b98;
+  transition: color .3s ease, transform .3s ease;
+  -webkit-tap-highlight-color: transparent;
 }
 .bottom-nav .nav-icon {
   font-size: 20px;
