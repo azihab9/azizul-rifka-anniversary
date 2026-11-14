@@ -54,14 +54,20 @@ const photoCards=[...gallery.querySelectorAll('button')];
 const dots=document.getElementById('photoDots');
 let activePhoto=0, autoSlide;
 photoCards.forEach((card,i)=>{const dot=document.createElement('button');dot.setAttribute('aria-label','Lihat foto '+(i+1));dot.addEventListener('click',()=>goToPhoto(i));dots.appendChild(dot);card.addEventListener('click',()=>{lightbox.querySelector('img').src=card.querySelector('img').src;lightbox.classList.add('open')})});
-function goToPhoto(index){activePhoto=(index+photoCards.length)%photoCards.length;photoCards[activePhoto].scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'});updatePhotoUI()}
+function goToPhoto(index){activePhoto=(index+photoCards.length)%photoCards.length;const card=photoCards[activePhoto];const left=card.offsetLeft-(gallery.clientWidth-card.clientWidth)/2;gallery.scrollTo({left,behavior:'smooth'});updatePhotoUI()}
 function updatePhotoUI(){[...dots.children].forEach((dot,i)=>dot.classList.toggle('active',i===activePhoto));document.getElementById('photoCount').textContent=String(activePhoto+1).padStart(2,'0')+' / '+String(photoCards.length).padStart(2,'0')}
 document.getElementById('photoPrev').addEventListener('click',()=>goToPhoto(activePhoto-1));
 document.getElementById('photoNext').addEventListener('click',()=>goToPhoto(activePhoto+1));
 let scrollTimer;gallery.addEventListener('scroll',()=>{clearTimeout(scrollTimer);scrollTimer=setTimeout(()=>{const center=gallery.scrollLeft+gallery.clientWidth/2;let closest=0,dist=Infinity;photoCards.forEach((card,i)=>{const d=Math.abs(card.offsetLeft+card.offsetWidth/2-center);if(d<dist){dist=d;closest=i}});activePhoto=closest;updatePhotoUI()},70)},{passive:true});
-function startAutoSlide(){stopAutoSlide();autoSlide=setInterval(()=>goToPhoto(activePhoto+1),4200)}
-function stopAutoSlide(){if(autoSlide)clearInterval(autoSlide)}
-gallery.addEventListener('mouseenter',stopAutoSlide);gallery.addEventListener('mouseleave',startAutoSlide);gallery.addEventListener('touchstart',stopAutoSlide,{passive:true});gallery.addEventListener('touchend',startAutoSlide,{passive:true});
+function startAutoSlide(){stopAutoSlide();if(photoCards.length<2||document.hidden)return;autoSlide=setInterval(()=>goToPhoto(activePhoto+1),4200)}
+function stopAutoSlide(){if(autoSlide){clearInterval(autoSlide);autoSlide=null}}
+const slider=document.querySelector('.photo-slider');
+slider.addEventListener('mouseenter',stopAutoSlide);
+slider.addEventListener('mouseleave',startAutoSlide);
+slider.addEventListener('touchstart',stopAutoSlide,{passive:true});
+slider.addEventListener('touchend',()=>{stopAutoSlide();setTimeout(startAutoSlide,900)},{passive:true});
+document.addEventListener('visibilitychange',()=>document.hidden?stopAutoSlide():startAutoSlide());
+document.getElementById('closeLightbox').addEventListener('click',()=>{lightbox.classList.remove('open');startAutoSlide()});
 updatePhotoUI();startAutoSlide();
 document.getElementById('closeLightbox').addEventListener('click',()=>lightbox.classList.remove('open'));lightbox.addEventListener('click',e=>{if(e.target===lightbox)lightbox.classList.remove('open')});
 document.getElementById('musicBtn').addEventListener('click',()=>{const b=document.getElementById('musicBtn');b.textContent=b.textContent.includes('A little')?'♫ Music is off':'♫ A little music';});
